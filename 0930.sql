@@ -106,5 +106,72 @@ WHERE salary IN(10000,17000,24000);
 LIKE 연산자 조회 조건의 값이 명확하지 않을때 사용한다. 
 % '모든 문자' _ '한글자'
 
+
+
+
+
 employees 테이블에서 job_id에 AD포함하는 모든 데이터를 조회하세요.
 LIKE '조건'
+
+
+
+SELECT *
+FROM EMPLOYEES
+WHERE JOB_ID LIKE '%AD%';
+
+
+last_name    LIKE '김%' 김으로 시작하면 모두 출력
+first_name   LIKE '%나%' 이름에 나가 있으면 모두 출력
+first_name   LIKE '%자'이름이 자로 끝나면 모두출력    
+
+
+
+employees 테이블에서 job_id에서 AD를 포함하면서 뒤에 글자 3개인 데이터를 조회하세요
+
+
+SELECT *
+FROM employees
+WHERE job_id LIKE '%AD___';
+
+IS NULL null은 값이 없는것을 뜻한다. 0이나 공백과 다르다. 
+
+
+
+
+SELECT *
+FROM employees
+WHERE manager_id IS NULL;
+
+
+
+
+여러개 조건
+
+employees 테이블에서 salary가 4000을 초과하면서 job_id IT_PROG 인 값을 조회하세요
+
+SELECT *
+FROM employees
+WHERE salary > 4000 
+AND job_id = 'IT_PROG';
+
+
+employees 테이블에서 salary가 4000을 초과하면서 job_id IT_PROG 이거나 fi_account 값을 조회하세요
+
+
+SELECT *
+FROM EMPLOYEES
+WHERE SALARY > 4000 
+AND job_id='IT_PROG'
+OR job_id='FI_ACCOUNT';
+
+
+########################################
+함수
+########################################
+
+
+
+
+
+
+
