@@ -169,9 +169,85 @@ OR job_id='FI_ACCOUNT';
 함수
 ########################################
 
+오라클 데이터베이스 에서의 함수는 문자,숫자날짜 값등을 조작할 수 있고 데이터 타입 끼리 변환 할 수 있다. 복수의 행을 조합하여 그룹당 하나의 결과로 출력할 수 있다. 
+
+- 데이터 값을 계산하거나 조작한다. 
+- 행을 그룹으로 계산하거나 요약한다. 
+- 열의 데이터 타입을 변환.
+
+
+문자  CHAR     - 고정 길이의 문자 타입
+
+문자  VARCHAR2 - 가변 길이의 문자 타입
+숫자  NUMBER (INT) - 숫자 타입을 저장.
+날짜  DATE 
+
+# 실무에서는 VARCHAR2 를 많이 사용한다. 
+단일행 함수 : 한번에 하나의 데이터를 처리하는 함수.
+그룹 함수 : 여러 데이터를 동시에 처리하여 그 결과를 반환
+GROUP BY 와 함께 많이 사용되며 요약 정보를 출력할 때 유용하다. 
+
+
+단일행 함수 : 테이블의 열은 한가지 데이터 타입으로 지정되어 있다. 지정된 데이터 타입과 일치하는 데이터 값만 저장할 수 있다. 
+1. 각행에 대해 수행
+2. 데어터 타입에 맞는 함수를 사용해야 한다. 
+3. 행별로 하나의 결과를 반환한다. 
+4. SELECT, WHERE, ORDER BY 절에서 사용된다. 
+5. 함수 안의 함수 처럼 중복해서 사용할 수 있다. 
+6. 중첩 할경우 안쪽에서 바깥쪽 순서로 진행된다. 
+
+
+LOWER/UPPER/INITCAP 소문자로/ 대문자로 / 첫글자만 대문자로
+
+SUBSTR 문자열 중 일부분만 선택
+
+REPLACE 특정 문자열을 찾아서 바꾼다. 
+
+LPAD / RPAD 특정 문자로 자리수 만들어 채우기
+
+CONCAT 문자열을 연결한다. 
+
+LENGTH 문자열의 길이를 구한다. 
+
+INSTR 문자의 위치를 구한다. 
+
+LTRIM / RTRIM  좌측 여백제거 우측 여백제거
+
+SELECT last_name,
+        LOWER(last_name),
+        UPPER(last_name),
+        email,
+        INITCAP(email)
+FROM employees
 
 
 
+SUBSTR 지정한 길이만큼 문자열을 추출한다. 데이터의 값이 이미 가공되어 저장되어 있어도 일부 문자열을 잘라내 가공해야 할 때가 많이 있다. 예를 들면 employees테이블에서 JOB_ID열의 앞의 두자리는 부서를 나타낸다. 앞의 두자리 데이터를 잘라내면 부서를 표시할 수 있다. 
+
+SELECT JOB_ID,
+SUBSTR(job_id, 1, 2)
+FROM employees;
+
+추출된 데이터는 기초 통계 처리나 다른 테이블과 붙일때 등 상황에 맞게 유용하게 응욯할 수 있다. 
 
 
+REPLACE 특정 문자를 찾아서 바꾼다 
 
+SELECT job_id,
+REPLACE(job_id, 'ACCOUNT', 'ACCNT')
+FROM employees;
+
+
+LPAD / RPAD 
+LPAD는 왼쪽부터 특정 문자로 자리수를 채우는 함수
+RPAD는 오른쪽부터 특정 문자로 자리수를 채우는 함수
+
+
+SELECT first_name,
+LPAD(first_name, 12, '*')
+FROM employees;
+
+
+SELECT first_name,
+RPAD(first_name, 12, ' ')
+FROM employees;
