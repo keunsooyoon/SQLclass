@@ -205,13 +205,14 @@ REPLACE 특정 문자열을 찾아서 바꾼다.
 
 LPAD / RPAD 특정 문자로 자리수 만들어 채우기
 
+LTRIM / RTRIM  좌측 여백제거 우측 여백제거
+
 CONCAT 문자열을 연결한다. 
 
 LENGTH 문자열의 길이를 구한다. 
 
 INSTR 문자의 위치를 구한다. 
 
-LTRIM / RTRIM  좌측 여백제거 우측 여백제거
 
 SELECT last_name,
         LOWER(last_name),
