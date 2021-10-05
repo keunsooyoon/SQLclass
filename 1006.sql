@@ -48,7 +48,8 @@ FROM employees
 SELECT COUNT(salary)
 FROM employees;
 
-# COUNT 함수는 null 값도 행으로 계산한다. (대부분의 함수들은 null을 제외하고 연산)
+# COUNT 함수는 null 값도 행으로 계산한다.(컬럼명을 안 넣을 경우) 
+컬럼명을 넣으면 null값을 제외. (대부분의 함수들은 null을 제외하고 연산)
 
 SELECT SUM(salary), AVG(salary), SUM(salary)/COUNT(salary)
 FROM employees;
@@ -59,4 +60,97 @@ SELECT MAX(salary),MIN(salary), MAX(first_name), MIN(first_name)
 FROM employees;
 
 
-GROUP BY 특징
+GROUP BY 
+
+SELECT job_id, SUM(salary), AVG(salary)
+FROM employees
+GROUP BY job_id
+
+
+SELECT job_id, SUM(salary) 직무별총급여, AVG(salary) 직무별평균급여
+FROM employees
+GROUP BY job_id, manager_id
+ORDER BY 직무별총급여 DESC;
+
+
+
+HAVING 연산된 그룹 함수 결과에 조건 적용
+
+SELECT job_id, SUM(salary) 직무별총급여, AVG(salary) 직무별평균급여
+FROM employees
+GROUP BY job_id
+HAVING sum(salary) > 30000
+
+
+
+UNION 
+
+SQL 을 이용해서 select 문의 실행 결과를 하나로 합친다. 즉, 각기 다른 두개 이상의 SELECT문을 실행한 결과를 하나로 묶어서 출력할수 있따. 
+집합을 하나로 묶을 때 사용 중복 행은 한번 출력한다. 
+
+SELECT department_id
+FROM employees
+UNION
+SELECT department_id
+FROM departments    # 28
+
+
+
+
+
+
+
+
+
+DML data maniupulation language
+
+SELECT문의 경우는 단지 조회하여 출력만 한다. 
+DML : INSERT(새로운 행삽입), UPDATE(갱신), DELETE(삭제);
+
+
+INSERT INTO departments (department_id, department_name, manager_id, location_id)
+VALUES(271,'sample_Dept', 200, 1700);
+
+열 순서에 따라 차례로 데이터 값을 기술해서 새로운 행을 삽입. values 절에는 삽입될 값을 기술한다. 
+
+
+INSERT INTO departments VALUES(272,'sample_Dept2', 300, 3700);
+
+
+UPDATE departments
+SET    manager_id = 201,
+       location_id=1800
+WHERE department_name = 'sample_Dept';
+
+# 다중 열 서브쿼리
+UPDATE departments
+SET (manager_id, location_id) = (SELECT manager_id, location_id
+                                 FROM departments
+                                 WHERE department_id=40)
+WHERE department_name = 'sample_Dept';
+# departments 테이블에서 department_id 가 40인 manager_id, location_id의 데이터 값을 찾아서 department_name = 'sample_Dept'인 행의 manager_id, location_id 를 찾아낸 데이터 값과 동일하게 변경.
+
+
+
+UPDATE departments
+SET    manager_id = null
+WHERE department_name = 'sample_Dept';
+
+
+
+UPDATE departments
+SET    department_id = null
+WHERE department_name = 'sample_Dept';
+
+departments 데이터의 department_id는 기본키이므로 null값을 가질 수 없다. null로 갱신을 시도하면 오류가 발생한다. 
+
+
+
+
+delete 삭제...
+
+DELETE FROM departments
+WHERE department_name = 'sample_Dept';
+
+
+
