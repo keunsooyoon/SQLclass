@@ -165,3 +165,6 @@ SELECT first_name,
        DECODE(department_id, 60, '10%인상','미인상')
 FROM employees;
        
+
+
+       
