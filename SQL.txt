@@ -1,0 +1,1120 @@
+관계형 DB 와 SQL
+
+기업에서 가장 많이 사용되는 DB, 관계형 DB
+
+데이터는 21세기의 원유라고 표현한다. 
+그만큼 잠재가치가 크다. 
+
+과거에는 데이터가 일부 전문가들만 다루는 영역이였고 일반인에게는 생소한 개념이였다. 
+하지만 지금은 대용량 처리 기술 인터넷 발달로
+빅데이터의 시대가 도래하였다. 이제는 IT전문가가뿐만아니라 영업관리자, 마케터, 서비스 기획자 등 비전공 실무자들도 데이터 분야에 관심을 갖게 되었다.  
+
+여러분이 영업팀에 근무한다고 가정했을때 매출 데이터와 분석결과로 보고서를 작성해야 할때 먼저 데이터가 있어야만 한다. 데이터는 
+1 관련부서 (IT부서) 에 요청 
+2 직접 DB에서 구해야 한다.  
+
+SQL을 알고 있다면 단 몇줄의 쿼리문을 사용하여 원하는 데이터를 몇 분안에 추출할 수 있다. 
+
+
+데이터 분석 과정
+
+1 문제인식 
+2 데이터 수집/가공 (SQL/전처리)
+3 데이터 분석(R/Python)
+4 분석 결과(보고서/회의)
+
+전체 과정에서 전처리(pre precessing 결측치, 이상치)가 70~80%을 차지한다. 
+
+데이터의 종류 : 
+정형structured data 
+비정형 unstructured data
+
+정형 - 틀이 잡혀있는 데이터, 체계화된 데이터
+	안정성이 높다, 유연성이 낮다
+             금융, 제조 등 대부분의 기업의 
+	데이터 ( 엑셀, CSV...) 
+             관계형 데이터베이스로 관리 가능
+비정형 - 틀이 잡혀있지 않은 사전 정의가 없는
+            다양하고 방대한 데이터 
+            텍스트(facebook, twitter...) 
+            이미지, 음원
+
+데이터베이스란???
+데이터는 어떤 것들의 '기록된 정보'이고
+이러한 데이터를 모아서 관리하는 것이 DB
+
+관계형 데이터베이스란 ??
+현재 업무용으로 가장 많이 사용되는 방식이고
+역사가 오래되었음에도 지속적으로 발전해 나가고 있는 데이터 베이스이다. MySQL MSSQL
+ORACLE, IBM, Access...
+
+열(column)과 행(row)로 이루어진 2차원 테이블을 중심으로 설계된 데이터 베이스이다. 
+테이블들이 Key와 관계라는 연결 고리로 연결되어 원하는 데이터를 조회하고 가공하는 방식의 데이터 베이스이다. 
+
+계층형 데이터베이스
+
+Root - Level 1
+       - Level 1  - Level 2
+                    - Level 2
+
+객체지향 데이터베이스
+데이터도 객체 모델로 관리
+
+ 객체 A      <->      객체 B
+     |        객체C         |
+ 객체 D                 객체 E
+
+XML 데이터베이스 
+주로 인터넷에서 데이터를 관리하는 용도로 사용된다. (파이썬의 dict, 자바의 map, JS json)
+
+SQL ???
+sql은 관계형 데이터베이스를 조작하기 위해 만든 표준언어로 DBMS과 통신하가 위한 언어이다. 
+
+사용자 -> SQL -> DBMS -> DB
+
+SQL의 특징
+1. 사용하기 쉽다. 
+2. 절차가 없는 비절차적 언어이다. 
+3. 관계형 DB를 조작한다
+4. 표준 언어이다.  
+
+SQL 의 종류
+
+DML 조작어 Data Manipulation Language
+	SELECT, INSERT, UPDATE, DELETE
+
+DDL 정의어 Data Definition Language
+	CREATE ALTER DROP RENAME
+
+DCL 제어어 Data Control Language
+	GRANT REVOKE
+
+TCL 트랜젝션 컨트롤 Transaction Control Language
+	COMMIT, ROLLBACK
+
+
+sql로 데이터 처리 (추출/수집/가공)을 하여
+데이터를 검색하고 분석한다.
+
+관계형 데이터베이스의 구성 요소
+
+1)테이블 뷰 인덱스 등으로 구성된다. 
+2)데이터를 저장하고 그 데이터들의 관계의 집합이다. 
+3)일관성, 정확성, 신뢰성을 위한 트랜젝션, 무결성 등의 
+   개념이 존재한다. 
+
+테이블 : 가장 많이 다루는 행과 열로 구성된 저장 단위
+            데이터베이스의 다양한 구성 요소 중에서 
+	데이터를 담는 그릇이라 할수 있는 테이블을 
+           가장 많이 사용하게 된다. 
+           데이터 베이스를 한마디로 요약하면 테이블들이
+           모여있는 집합이라고 할수 있다. 
+	테이블은 행 row 항목,  열 column 속성 
+	컬럼으로 이루어진 엑셀과 비슷하다. 
+
+
+
+SQL Developer 
+1 접속(좌상) DB 정보 테이블/ 뷰 등의 객체 정보가 계층형태로 보여진다. DB 의 전체  구조를 알수 있다. 
+
+2.보고서(좌하) 데이터 모델링과 구조 보안 성능 등 모니터링과 보고서를 확인하는 영역 주로 DB관리자 시스템 당당자가 보는 화면으로 초반에는 사용할 일이 거의 없다. 
+
+3.편집(우상) SQL문을 작성하는 편집 영역이다. 이 창에서 SQL문을 작성하게 된다. 작성할 때 발생되는 문법 오류 등을 알려준다. 
+
+4. 출력(우하) SQL문의 실행 결과등이 출력되는 영역이다. 
+
+
+별도의 ID HR pass 1234 생성
+
+ALTER USER HR ACCOUNT UNLOCK IDENTIFIED BY 1234;
+
+
+
+SELECT 
+데이터를 조회하는 데 필요한 거의 모든 기능을 제공한다. 
+SELECT을 사용하여 행을 선택하고 열을 선택하고 
+테이블과 테이블을 연결할수 있다. SELECT문은 데이터를 조회
+하고 분석하는데 가장 기본이며 중요한 SQL 구문이다. 
+
+SELECT 문은 항상 FROM 과 함께 사용된다. 다른 조건 추가가
+필요하면 WHERE절에 기속하고 데이터가 출력되는 순서를
+조정하려면 ORDER BY 를 사용한다. 
+
+SELECT (열이름들 or *) <- 가져올 열들 또는 열 또는 전체
+FROM (테이블명)         <- 어느 테이블로 부터 
+[WHERE (조건식)]  <- 선택
+[ORDER BY (열이름 ASC or DESC)];
+
+1. SQL 구문은 모두 항상 대문자로 입력한다. 
+2. []안의 항목은 선택사항으로 생략 가능하다. 
+3. 구문의 끝은 세미콜론을 입력한다.(생략 가능할때도 있다.)
+4. 한줄 또는 여러줄을 사용하든 상관하지 않는다.
+5. 들여쓰기도 상관 하지 않는다.  
+
+SELECT 는 데이터를 선택한다는 의미이다. 단지 선택만 할뿐
+그 결과값이 데이터베이스에 반영되는 것은 아니다. 
+
+
+SELECT *   <- 출력하려는 열이 '모든 열'이라는 의미
+FROM employees;  <- 어느 테이블로 부터라는 의미 
+
+'employees'라는 테이블로 부터 모든 열을 조회하라'
+
+
+SELECT employee_id, first_name, last_name
+FROM employees;
+
+SELECT 명령문 뒤의 나열한 열들의 이름 순으로 조회된다. 
+열들의 이름은 ,를 사용하여 계속 붙일수 있고 결과는
+나열한 순서대로 출력된다. 
+
+모든열 *을 대신하여 모든 열의 이름을 모두 적으면
+같은 결과가 나오게 된다. 
+
+ORDER BY 열이름 [ASC or DESC] <- DESC 내림차순 
+
+
+SELECT employee_id, first_name, last_name
+FROM employees
+ORDER BY employee_id DESC; <- employee_id 값을 
+                               기준으로 내림차순 DESC 정렬
+
+
+ORDER BY 명령문에 아무것도 지정하지 않으면 오름차순
+정렬되기 때문에 ORDER BY employee_id ASC; 와 같다. 
+
+ORDER BY 열이름, 열이름 DESC, 열이름 ASC 식으로 
+정렬하고 싶은 열을 계속 지정할 수 있다. 
+
+중복값 제거하고 출력 DISTINCT
+SELECT DISTINCT job_id
+FROM employees;
+
+distinct 를 사용하면 데이터 값이 종류별로 하나씩만
+출력된것을 볼 수 있다. 
+
+
+
+별명 사용하기 
+SELECT문의 결과를 출력할 때 일반적으로 열이름은 
+테이블을 정의할 때 명명한 열의 제목을 출한다. 원래의
+열이름 외의 이름으로 쓰고자 할때 사용하는 것이
+별칭(alies)이다. 
+1) 열이름을 임시로 변경하는데 사용된다. 
+   원래 이름이 물리적으로 변경되는 것은 아니다. 
+
+2) 별칭은 열이름 바로 뒤에 사용하며 AS를 사용한다. 
+
+3) AS 는 생략 가능하다. 
+
+SELECT employee_id as 사원번호, first_name AS 이름
+FROM employees;
+
+
+
+
+
+데이터 값 연결 - 각 열에 따로 담겨 있는 데이터를 하나로
+                   붙이거나 추가 서식을 붙여 활용할 수 있다. 
+		|| 연결 연산자 2개 
+                    [열 이름] || [열 이름]   [열 이름] || '문자'
+
+
+SELECT employee_id, first_name||last_name
+FROM employees;
+
+
+SELECT email || '@' || 'naver.com'
+FROM employees;
+
+SELECT email || '@' || 'naver.com' AS email
+FROM employees;
+
+
+
+데이터 값끼리 연산
+
+SELECT employee_id, salary, salary+500, salary-100
+FROM employees;
+
+
+
+조건절을 활용한 데이터 검색 WHERE
+
+행의 특정 데이터 값을 조회하거나 비교하여 연산처리하는 방법
+'어디에서 어떻게' 가져올지를 결정한다. WHERE는 FROM 다음에 위치하며 조건식을 포함한다. 
+1) 조건을 지정하고
+2) FROM 절 다음에 위치한다. 
+3) 조건절에는 비교연산자 논리연산자 표현식 문자 숫자등을
+   사용한다. 
+SELECT 열이름
+FROM 테이블이름
+WHERE 조건;
+
+
+SELECT *
+FROM employees
+WHERE employee_id = 100;   <- 조건이 숫자
+
+SELECT *
+FROM employees
+WHERE first_name = 'David';   <- 조건이 문자
+
+# 'David' 과  'david'은 다른 의미이다. 
+
+SELECT *
+FROM employees
+WHERE employee_id >= 100; 
+
+
+
+BEETWEEN a AND b  두 값의 범위에 해당하는 행들을 검색
+
+
+SELECT *
+FROM employees
+WHERE salary BETWEEN 10000 AND 20000;
+
+
+IN  조회하고자 하는 데이터 값이 여러개일때 사용한다. 
+     =과 비슷하지만 =은 하나만 지정하지만 IN은 여러개를
+     지정할 수 있다. 
+
+SELECT *
+FROM employees
+WHERE salary IN (10000, 17000, 24000);
+
+
+LIKE 조건값이 명확하지 않을때 '~ 와 같은'
+1) % 와 _ 같은 기호 연산자와 함께 사용된다. 
+2) 조건에는 문자나 숫자가 포함된다. 
+3) %는 모든 문자의 의미이고 _는 '한글자'를 의미한다. 
+
+SELECT *
+FROM employees
+WHERE job_id LIKE 'AD%';
+# 맨앞에 AD를 포함하면 뒤에는 몇개가 오든 어떤 글자가 오든 
+   출력한다. 
+
+
+SELECT *
+FROM employees
+WHERE job_id LIKE 'AD___';
+# 맨앞에 AD를 포함하고 뒤에는 반드시 3글자인 데이터만 출력
+
+
+
+IS NULL 데이터의 값이 null인 경우를 조회할 때 사용한다. 
+null은 공백이 아니고 0도 아니다. 공백은 문자이다. 
+
+SELECT *
+FROM employees
+WHERE manager_id IS NULL;
+
+
+
+
+SELECT *
+FROM employees
+WHERE salary > 4000
+AND job_id = 'IT_PROG';
+
+AND는 주어진 조건들을 모두 만족
+
+
+
+
+SELECT *
+FROM   employees
+WHERE salary > 4000
+OR       job_id = 'IT_PROG';
+
+OR는 주어진 조건중 하나만 만족해도 전부 만족
+
+
+NOT 같지않다   != 같지 않다. <> 같지 않다. (ISO표준)
+
+
+
+SELECT *
+FROM   employees
+WHERE job_id <> 'IT_PROG';
+
+
+# 함수
+
+입력 -> 함수 -> 출력
+input              output
+딸기    믹서기   딸기주스
+
+x = 2   y = 2x + 1   y = 5
+
+1) 데이터값을 계산하거나 조작한다.
+2) 행의 그룹에 대해 계산하거나 요약한다. 
+
+함수에는 단일행 함수와 그룹함수가 있다. 
+
+단일행함수 : 한번에 하나만 처리 a1값을 처리하고 a2값을 처리
+
+그룹함수 : 동시에 대상 열 전체 처리 d1,d2,d3,d4 동시에 입력받아서 평균, 합계등을 출력한다. 
+그룹함수는 GROUP BY 절과 함께 사용된다.  
+
+
+단일행함수에 많이 사용되는 데이터 타입을 보면
+CHAR(n) 문자, 고정길이
+VARCHAR(n) 문자, 가변길이 
+숫자 NUMBER() 숫자 타입
+날짜 DATE() 날짜 타입
+
+단일행 함수들은 테이블에 존재하는 많은 행들이 한번에 하나씩만 입력되어 하나씩 처리되는 함수이다. 
+1) 각행에 대해 수행한다. 
+2) 각 데이터타입에 맞는 함수를 사용해야 한다. 
+3) 행별로 하나의 결과를 반환한다.
+4) 중첩해서 사용할 경우 가장 안쪽단계에서 바깥쪽 단계로 진행된다. 
+함수1(함수2(함수3))
+1)함수3 >> 2)함수2 >>3)함수1
+
+문자 타입함수는 주로 데이터 조작에 쓰이고 문자나 문자열 데이터는 작은 따옴표('')를 사용하여 표현한다. 
+
+#문자 타입함수
+lower() 값을 소문자로 변환한다 
+	lower('ABCD')    	-> abcd
+upper() 값을 대문자로 변환한다. 
+	upper('abcd')	-> ABCD
+initcap() 첫 글자만 대문자로 변환한다. 
+	initcap('abcd')    	-> Abcd
+substr() 문자열들 중에서 일부분만 선택한다.
+	substr('ABC',1,2)	-> AB
+replace() 특정 문자열을 찾아 바꾼다. 
+	replace('AB','A','E')	-> EB
+concat() 두 문자열을 연결한다. ( || 와 같다.)
+	concat('A','B')	-> AB
+length() 문자열의 길이를 구한다. 
+	length('AB')	-> 2
+instr()    문자의 위치를 구한다.
+	instr('ABCD','D')	-> 4
+lpad()	왼쪽 부터 특정 문자로 자리를 채운다. 
+	lpad('ABCD',6,'*')	-> **ABCD
+rpad()	오른쪽부터 특정 문자로 자리를 채운다. 	
+	rpad('ABCD',6,'*'	-> ABCD**
+ltrim()	문자열의 왼쪽 문자를 지운다. 
+	ltrim('ABCD','AB')	-> CD
+rtrim()	문자열의 오른쪽 문자를 지운다. 
+	rtrim('ABCD','CD')	-> AB
+
+
+SELECT last_name,
+    LOWER(last_name) LOWER적용,
+    UPPER(last_name) UPPER적용,
+    email,
+    INITCAP(email) INITCAP적용
+FROM employees;
+ 
+첫 글자만 대문자 였던 last_name
+열의 값이 LOWER 함수를 적용하면 모두 소문자 바뀐다. 
+또한 원래 대문자였던 email 열의 값은 INITCAP 함수를 적용하자 첫 글자만 대문자로 변경된 것을 볼 수 있다. 
+
+
+# SUBSTR : 지정된 길이만큼 문자열 추출하기 
+
+
+SELECT job_id, SUBSTR(job_id, 1,2)
+from employees;
+
+SUBSTR('문자역', 시작위치, 길이)
+
+REplace 특정 문자를 찾아 바꾸기
+
+lpad
+SELECT first_name ,lpad(first_name, 12, '*')
+FROM employees;
+
+employees 테이블에서 job_id의
+값에 대해 왼쪽 방향 부터 "F"를
+만나면 삭제
+
+SELECT job_id,
+	LTRIM(job_id, "F")
+FROM employees;
+
+
+
+TRIM (공백을 모두 제거)
+문자열의 중간의 여백은 제거 불가
+
+DUAL 테이블 dummy라는 하나의 열과 X데이터 값을 갖고 있는 테이블이다 별 의미 없이 테이블을 문법적으로 지정해야만 할때 사용하는 테이블이다. 
+
+
+
+
+
+#숫자 타입함수
+숫자 타입 함수들은 주로 숫자를 계산하거나 계산이 끝난 뒤에 추가로 가공처리를 할때 사용한다. 
+
+round 반올림 
+	round(15.351,0) ->15
+	round(15.751,0) ->16
+
+trunc 숫자를 절삭한다. 
+	trunc(15.351,1) -> 15.3
+
+mod 나누고나서 나머지만 취한다. 
+	홀수 짝수 배수
+	mod(15,2)	      ->1
+sign() 양수(1) 음수(-1) 0 인지를 구분한다. 
+
+	sign(15)	      -> 1
+
+반올림 round
+1  2  3  .  4  5  6
+-3 -2 -1   1  2  3
+
+SELECT salary,
+	salary/30 일급
+
+FROM employee;
+
+SELECT salary,
+	ROUND(salary/30,-1) MINUS1적용,
+	ROUND(salary/30,1) PLUS1적용,
+	ROUND(salary/30,0) Zero0적용,
+	salary/30 일급
+FROM employees;
+
+
+
+trunc 지정한 숫자 자리에서 숫자를 절삭( 버림) 기본 문법은 round와 동일하다. 
+
+
+변환함수
+
+각 열에 대해 데이터 타입을 규정하고 있다. 따라서 SQL문을 실행하기 위해 데이터 값의 타입을 변환해야 할때도 있다. 
+데이터베이스 시스템에 의해 자동으로(암시적으로) 또는 사용자에의 수동으로(명시적으로) 실행될수 있다. 
+
+자동 형변환
+
+VARCHAR or CHAR -> NUMBER
+VARCHAR or CHAR -> DATE
+
+
+SELECT 1 + '2'
+FROM dual;
+
+'2'는 작은 따옴표로 묶여 있으므로 숫자가 아닌 문자이다. 그럼에도 불구하고 결과는 3이라고 바르게 계산되어 출력되었다. DBMS이 계산을 위해 문자 '2'를 자동으로 숫자 2로 변환하여 계산하였다. 이것을 데이터베이스 시스템에 의한 자동 데이터 타입 변환이라고 한다. 
+그렇지만 자동 데이터 타입 변환을 이용할수 있더라도 SQL문의 성능과 안정성을 위해 수동 데이터 타입 변환을 수행하는 것이 좋다. 
+
+수동 데이터 타입 변환
+
+TO_CHAR 숫자/문자/날짜를 VARCHAR로 변환
+TO_NUMBER 문자를 숫자로 변환
+TO_DATE 형태만날짜인 문자열을 날짜로 변환
+
+SELECT TO_CHAR(SYSDATE, 'YY')
+FROM dual;
+
+
+SELECT TO_CHAR(SYSDATE, 'YY'),
+        TO_CHAR(SYSDATE, 'YYYY'),
+        TO_CHAR(SYSDATE, 'MM'),
+        TO_CHAR(SYSDATE, 'MON'),
+        TO_CHAR(SYSDATE, 'YYYYMMDD') 응용적용1
+FROM dual;
+
+
+SELECT TO_CHAR(SYSDATE, 'HH:MI:SS PM') 시간형식,
+    TO_CHAR(SYSDATE, 'YYYY/MM/DD HH:MI:SS PM') 날짜시간함께
+FROM dual;
+
+TO_NUMBER 숫자 처럼보이는 문자열을 진짜 숫자데이터타입으로 변환하는 함수
+
+
+데이터를 조작하거나 프로그래밍할때 자주쓰는 함수들을 살펴보자. 
+
+NOT NULL 특정 열의 행에 대한 데이터 값이 없다면 데이터 값은 NULL이 된다. NULL '값이 아무것도 없다.'는 것을 나타내는 값이다. 
+테이블을 만들때 null값을 가지지 못하도록 지정할 수도 있다. 
+null의 특징
+1) 함수 적용이 불가능한 값이다. 
+2) 0도 아니고 공백 ' ' 아니다. 
+3) null값을 포함하여 계산한 결과는 null이다. 
+
+
+SELECT *
+FROM employees
+ORDER BY commission_pct;
+
+
+commission_pct 에 대해 오름차순으로 정렬하여 출력된다. 
+36행부터는 데이터의 값이 null이다. 
+
+
+SELECT Salary * commission_pct
+FROM employees
+ORDER BY commission_pct;
+
+null이 있는 36행부터는 null로 계산이 된다. 
+
+
+NVL(열이름, 치환값)
+
+SELECT salary * NVL(commission_pct,1)
+FROM employees
+ORDER BY commission_pct;
+
+
+commission_pct 열의 데이터 값이 null이 아닐때는 그냥 그대로 계산이 되지만 null일때는 null로 계산하여 처리하면 결과도 null이 나오기 때문에 NVL함수를 사용하여 null일 경우에는 그 값을 1로 바꾸어 계산한다. 
+
+NVL함수는 null값을 어떤 특정한 값으로 변환하여 계산한다. 
+
+null값은 산술계산 을 할때 논리적인 오류를 일으킬수 있다. 예를 들면 평균을 계산할때 null값이 존재하면 결과가 null로 나오기 때문에 의도에 맞게 처리(NVL)해 주어야한다. 
+
+DECODE : 조건 논리 처리
+IF-THEN-ELSE-END 처럼 조건 논리를 가능하게 하는 함수, SQL 구문 작상할때 매우 자주 쓰는 함수이다. 
+
+DECODE(열이름, 조건값, 치환값, 기본값)
+
+치환값: 조건에 해당
+기본값: 조건에 해당하지 않을 경우
+
+
+SELECT first_name, 
+        last_name,
+        department_id,
+        salary 원래급여,
+        DECODE(department_id, 60, salary*1.1,salary) 조정된급여,
+        DECODE(department_id, 60, '10%인상','미인상') 인상여부
+FROM employees;
+
+
+DECODE함수는 산술 계산 외에 문자열 표현도 가능하고 다양한 형태로 응용하여 활용할 수 있다. 
+DECODE(열이름, 조건,true, false 조건,true,false............)
+
+
+CASE 표현식 : 복잡한 조건 논리 처리
+조건식을 여러개 적용해야 할때는 DECODE 보다 CASE 표현식을 이용하는 것이 유용하다. DECODE함수는 데이터 값이 정확히 맞거나 틀린 조건을 처리하기 용이한 반면에 CASE 함수는 조건의 범위가 다양한 경우 쉽게 처리 할수 있다. 
+
+
+SELECT employee_id, first_name, last_name, salary,
+    CASE
+        WHEN salary >= 9000 THEN '상위급여'
+        WHEN salary BETWEEN 6000 AND 8999 THEN '중위급여'
+        ELSE '하위급여'
+    END AS 급여등급
+FROM employees;
+
+데이터 값들의 범위를 잘 모르거나 특정 조건에 맞게 출력할때는 CASE 표현식이 유용하게 사용된다. 
+
+CASE문은 매우 다양하게 활용할수 있는데 위와 같이 숫자로 구간 등급을 나누어 표현할수도 있고 나이, 지역, 날씨 등을 구분하여 출력할때 응용하여 사용할 수 있다. 
+
+
+순위 매기기  RANK, DENSE_RANK, ROW_NUMBER 
+순위 매기기는 것은 동일하지만 사용법이 조금씩 다르다. 
+공통순위가 있을때 출력을 어떻게 할 것이냐에 따라 달라진다. 
+
+RANK 공통순위를 출력하고 그 갯수만큼 건너뛰어 다음 순위를 결정한다.  1, 2, 2, 4 ......
+DENSE_RANK 공통순위를 출력하고 건너뛰지 않고 바로 다음 순위 출력 1, 2, 2, 3.....
+ROW_NUMBER 공통 순위 없이 출력한다. 1,2,3,4....
+
+SELECT employee_id,
+    salary,
+    RANK() OVER(ORDER BY salary DESC) RANK_급여
+FROM employees;
+
+SELECT employee_id,
+    salary,
+    DENSE_RANK() OVER(ORDER BY salary DESC) DENSE_RANK_급여
+FROM employees;
+
+SELECT employee_id,
+    salary,
+    ROW_NUMBER() OVER(ORDER BY salary DESC) ROW_NUMBER_급여
+FROM employees;
+
+
+# 그룹함수 - 집계함수 , 기준열에 대해 같은 데이터 값끼리 그룹으로 묶어 묶은 행들의 집합에 대해 그룹함수 연산을 GROUP BY 절을 이용하여 처리한다. 묶은 열들, 그룹에 대해 조건이 필요하면 HAVING 절을 추가로 적용한다. 
+
+SELECT 그룹함수(열이름)
+FROM 테이블이름
+[WHERE 조건식]
+[ORDER BY 열이름]
+
+
+그룹함수
+COUNT 행의 갯수 (COUNT 함수는 null 값도 개수를 셈, *은 전체의 의미
+SUM 합계            나머지 전부는 null 제외하고 계산)
+AVG 평균
+MAX 최대값
+MIN 최소값
+STDDEV 표준편차
+VARIANCE 분산
+
+SELECT SUM(salary),AVG(salary)
+FROM employees;
+
+SELECT MAX(salary), MIN(salary)
+FROM employees;
+
+# GROUP BY 그룹으로 묶어 계산한다. 
+
+SQL 에서 같ㄹ은 데이터 값을 갖는 행끼리 묶어 그룹화하여 연산한다. 
+기준열을 지정하여 그룹화 하는 명령어 이다. 
+
+SELECT 기준열, 그룹함수(열이름) 4. 결과를 출력
+FROM 테이블이름                   1. 어느 테이를로 접근
+[WHERE 조건식]                     2. WHERE 조건식에 맞는 데이터만 추출
+GROUP BY 열이름                  3. 같은 데이터끼리 그룹화
+[ORDER BY 열이름];                5.오름차순asc, 내림차순desc 정렬
+
+GROUP BY 의 특징
+1) SELECT의 기준열과 그룹함수가 같이 지정되면 GROUP BY 절의 기준열
+   이름이 반드시 기술 되어야 한다. 
+2) WHERE 절을 사용하면 행을 그룹으로 묶기 전에 앞서 조건식이 적용된다. 
+3) SELECT 절에 그룹함수를 사용하지 않아도 GROUP BY 절만으로도 사용할수 있다. 
+
+
+employees 테이블에서 employee_id가 10이상인 직원에 대해 job_id 별로 그룹화하여 Job_id 별로 총 급여, 평균급여 를 구하여 총 급여 기준으로 내림차순 정렬하자. 
+
+
+
+SELECT job_id, SUM(salary), AVG(salary)
+FROM employees
+WHERE employee_id >=10
+GROUP BY job_id
+ORDER BY SUM(salary) DESC;
+
+
+
+SELECT job_id, manager_id,
+        SUM(salary), 
+        AVG(salary)
+FROM employees
+WHERE employee_id >=10
+GROUP BY job_id, manager_id
+ORDER BY SUM(salary) DESC;
+
+GROUP BY 절에서 job_id, manager_id 로 열이름을 순선대로 기술하여 대그룹화와 중그룹화하고 그룹화된 집합에 대해 그룹함수를 적용해 결과를 출력하였다. 즉, job_id별로 첫번째 그룹화가 되었고 여러개의 중그룹을 갖게 되는 manager_id별로 총급여와 평균 급여가 계산된 것을 볼수 있다. 
+
+HAVING : 연산된 그룹 함수 결과에 조건적용하기 
+
+HAVING 절은 그룹화된 값에 조건식을 적용할 때 사용된다. 즉, WHERE절에서는 그룹함수를 쓸수 없기때문에 HAVING절을 사용해서 그룹함수의 결과값에 대해 조건식을 적용한다. 일반적으로 GROUP BY 절 다음에 기술하는 것이 논리적이고 가독성이 좋다. 
+
+SELECT 열이름, 그룹함수(열이름) 5
+FROM 테이블이름            1
+[WHERE 조건식]               2
+GROUP BY 열이름            3
+[HAVING 조건식]             4
+[ORDER BY 열이름]           6
+
+employees 테이블에서 employee_id 가 10이상인 직원에 대해서 job_id별로 그룹화하여 job_id별 총급여와 평균급여를 구하는데
+
+job_id별 총 급여가 30000보다 큰값만 출력하세요 결과는 job_id별로 총급여를 기준으로 내림차순 정렬하세요.
+
+그룹함수와 그룹화 절을 응용하면 데이터를 그룹화해서 데이터의 틀셩별로 분류하거나 계산할 수 있다. 이것을 통해 각종 리포트와 기술 통계가 가능해진다. 
+
+
+
+여러개의 테이블을 연결하기 
+
+조인join 이란 관계형 데이터베이스의 테이블 안에 있는 행들을 논리에 따라 연결하도록하는 기법이다. 관계형 데이터베이스의 핵심 요소가 조인이다. 
+
+관계형 데이터베이스 - 테이블들이 관계를 맺고 조작되는 원리, 테이블 들에는 각 유형에 맞는 데이터가 저장되어 있고 테이블들은 특정한 규칙에 따라 상화 관계를 맺는다. 테이터가 테이블들에 흩어져 저장되어 있으므로 사용자가 원하는 형태로 데이터를 조작하려면 특별한 방법이 필요하다. 이 기법이 바로 조인 join 이다. 조인은 한개 이상의 테이블과 테이블을 서로 연결하여 사용하는 기법이다. 
+
+조인에는 동등조인, 외부조인, 자체조인 등을 많이 사용한다. ( 곱집합, 비동등....)
+동등조인 (조인 조건이 정확히 일치하는 경우)
+외부조인(조인 조건이 정확하지 않아도...)
+자체조인(자체 테이블에서 조인...)
+
+동등조인 : 똑같은 데이터 끼리 연결
+가장 일반적이고 자주쓰는 조인이다. 조건값이 정확하게 일치하는 경우만 가져오기 때문에 inner join 또는 equi join 라고 부른다.
+
+
+SELECT *
+FROM employees A, departments B
+WHERE a.department_id = b.department_id;
+ 
+키로 department_id를 기준으로 조인한 결과를 볼 수있다. 같은 값끼리 연결이 되어 조회가 되었다. 
+
+
+employees 테이블과 departments 테이블과 locations 테이블을 조인하여 각 직원이 어느 부서에 속하는 지 부서의 소재지가 어디인지 조회해 보세요. 
+
+
+외부 조인 : 모든 데이터 연결
+	동등조인은 데이터 값이 정확히 일치하는 경우에만 결과를 출력한다. 만약 데이터 값이 정확히 일치하지 않는 다면 결과가 조회되지 않는다.  외부조인은 (outer join) 조건을 만족하지 않는 행도 모두 출력한다. 
+
+1) 외부조인은 동등 조인 조건을 만족하지 못해 누락되는 행을 출력하기 위해 사용한다. 
+2) 외부 조인은 (+)기호를 사용한다. 
+3) (+)기호는 조인할 행이 없는 즉 데이터값이 부족한 테이블의 열이름 뒤에 기술한다. 
+4) (+)기호는 한쪽에만 기술할 수 있다. 양쪽 모두에는 기술할수 없다. 
+5) (+)기호를 붙이면 데이터 값이 부족한 테이블에 null 값을 갖는 행이 생성된다. 
+
+
+
+
+SELECT A.department_id, A.first_name, 
+        A.last_name, b.department_id,
+        b.department_name
+FROM employees A, departments B
+WHERE A.department_id = B.department_id(+)
+ORDER BY a.department_id
+
+외부 조인은 일치하지 않는 데이터도 출력하고자 할때 사용된다. 
+
+동등조인을 가장 많이 사용하지만 그 다음으로 많이 사용되는 것이 외부조인이다. 
+
+자체 조인 - 자기 자신의 데이터와 연결
+
+employees 테이블의 직원정보 중에 manager_id 열이 있다. 담당 매니저의 정보를 담고 있는 열이다. 데이터 값으로 담당매니저의 employee-id만 갖고 있으므로 담당 매니저가 누구인지 인적 정보를 조회하려면 결국 다시 employees 테이블을 조인해야 한다. 이렇게 자기 자신 테이블을 조인하는 것을 자체 조인이라고 한다. 
+
+
+SELECT A.employee_id, A.first_name, A.last_name, A.manager_id, 
+        B.first_name|| ' ' || B.last_name
+FROM employees A, employees B
+WHERE A.manager_id = B.employee_id
+ORDER BY A.employee_id 
+
+자체 조인의 특징
+1) 자기 자신 테이블을 이용하여 조인한다. 
+2) 같은 테이블을 사용하기 때문에 각기 다른 별명을 사용하여 마치 서로 다른 두개의 테이블을 동등 조인하는 것처럼 보인다. 
+3) 자체 조인을 할때 테이블은 동일한 열로 구성되어 있기 때문에 반드시 '별명.열이름'의 형태로 명확하게 구별하여 조회하여야 한다. 
+
+
+집합으로 연결
+지금까지는 FROM 절에서 테이블들을 기술하고 WHERE 절에 조건을 기술하여 테이블을 연결하여 조회하는 방식이다. 
+또 다른 연결방식으로 집합 연산자를 이용하는 방법이 있다. SELECT문을 여러개 연결하여 작성한다. 
+
+UNION 합집합 중복되는 행은 한번만 출력
+UNION ALL  중복되는 행도 출력
+
+INTERSET 교집합 중복되는 행만 출력
+
+MINUS 차집합 첫번째에서 두번째를 뺀다. 
+
+
+UNION 
+	SELECT 문의 실행결과를 집합 하나로 만들수 있다. 즉, 각기 다른 두개이상의 SELECT문을 실행한 결과를 하나로 묶어서 출력할수 있다. 중복되는 행은 한번만 출력
+
+employees 테이블의 department_id 집합과 
+departments 테이블의 department_id 집합을 UNION 연산자를 이용해 합쳐 보자. 
+
+
+UNION 은 중복을 삭제하고 하나만 출력한다.
+
+SELECT department_id
+FROM employees
+UNION
+SELECT DEPARTMENT_id
+FROM departments;
+
+UNION ALL 은 중복을 포함하여 출력한다. 
+
+SELECT department_id
+FROM employees
+UNION ALL
+SELECT DEPARTMENT_id
+FROM departments
+ORDER BY department_id;
+
+
+
+INTERSECT 양쪽 SELECT 문에 모두 존재하는 데이터만 출력한다. 즉 교집합을 출력한다. 
+
+
+SELECT department_id
+FROM employees
+INTERSECT
+SELECT DEPARTMENT_id
+FROM departments
+ORDER BY department_id;
+
+MINUS 차집합
+	첫번째 SELECT 문의 집합에서 두번째 SELECT 문의 집함을 뺀결과를 출력한다. 
+첫번째 SELECT 문의 집합에서 양쪽 테이블의 교집합을 뺀 결과와 동일하다. 
+
+
+
+SELECT department_id
+FROM departments
+MINUS
+SELECT DEPARTMENT_id
+FROM employees
+ORDER BY department_id;
+
+departments 테이블에만 존재하는 department_id 값이라고 볼수 있다. 
+
+
+
+서브쿼리:
+SELECT 문 안의 SELECT 문
+서브쿼리는 SELECT 문안에서 보조로 사용되는 또 다른 SELECT 이다. 복잡한 SELECT문을 작성할때 거의 필수로 사용되는 기법이다. 
+
+서브쿼리의 결과를 메인쿼리가 받아서 처리하는 구조이기때문에 중첩 nested 쿼리라고도 부른다. 
+두번 작성해서 결과를 출력할 SELECT 구문을 한번으로 작성해서 처리할수 있도록 한다. 
+
+1) 서브 쿼리는 괄호() 로 묶어서 사용한다. 
+   메인 쿼리는 묶을 필요 없다. 
+2) 메인과 서브를 연결결하기 위해 단일행 연산자 또는 다중행 연산자를 사용한다. 
+3) 메인쿼리는 연산자의 왼쪽에 기술하고 
+    서브쿼리는 연산자의 오른쪽에 기술한다. 
+4) 서브쿼리가 먼저 실행되고 메인쿼리가 실행된다. 
+
+
+단일행 서브쿼리
+	서브쿼리 SELECT 문에서 얻은 한개 행의 결과값을 메인쿼리로 전달하는 서브쿼리이다. 단일행 연산자는 하나의 행을 처리하는 연산자이고 메인쿼리와 서브쿼리 가 서로 같아야 한다. 
+SELECT *
+FROM employees A 
+WHERE A.salary = ( 
+                    SELECT salary
+                    FROM employees
+                    WHERE last_name = 'De Haan'
+                 );
+
+De Haan 의 salary 는 17000, 서브쿼리 결과 17000 을 메인 쿼리의 조건값으로 전달했고 메인쿼리는 그 값을 받아서 salary가 17000인 모든 직원을 출력했다. 
+
+SELECT *
+FROM employees A 
+WHERE A.salary = 17000;
+
+
+
+
+SELECT *
+FROM employees
+WHERE last_name = 'Taylor';
+
+전달 결과가 다중행일때 단일행 연산자를 사용하면 오류가 발생한다. 
+
+SELECT *
+FROM employees A 
+WHERE A.salary = ( 
+                    SELECT salary
+                    FROM employees
+                    WHERE last_name = 'Taylor'
+                 );
+
+last_name 이 Taylor 인 직원이 두명이 존재하고 salary 도 각각 8600, 3200으로 각각 두개의 결과행을 전달한다. 하지만 단일행 연산자를 사용하기 때문에 오류가 발생됐다. 
+
+
+다중 행 서브쿼리 
+
+	다중행 서브쿼리도 단일행과 거의같다. 다중행 연산자를 사용한다. 
+IN           여러개의 같은값
+NOT IN    여러개의 같지 않은 값
+EXISTS      값이 있으면 참
+ANY        or 최소한 하나라도 만족 
+              ANY(10,20) 둘중 하나만 포함
+ALL         and 모두 포함해야 만족
+	ALL(10,20) 10,20 모두 포함
+
+
+SELECT *
+FROM employees A
+WHERE A.salary IN (
+                    SELECT MIN(salary)
+                    FROM employees
+                    GROUP BY department_id
+                    );
+
+다중 행 서브쿼리 이므로 등호=연산자를 사요하지 않고 다중 행 연산자인 IN을 사용했다. 메인 쿼리에서는 다중행의 salary 값을 결과값이자 조건식으로 받아 일치하는 직원을 출력한다.   
+
+다중 열 서브쿼리
+메인쿼리와 서브쿼리를 비교하는 where 조건식에서 비교되는 열이 여러개일때 사용하는 서브쿼리이다. 
+
+
+employee 테이블에서 job_id별로 가장 낮은 salary가 얼마인지 찾아보고 해당하는 직원이 누구인지 찾아보자. 
+
+
+
+SELECT *
+FROM employees A
+WHERE (A.job_id, A.salary) IN (
+                    SELECT job_id, MIN(salary)
+                    FROM employees
+                    GROUP BY job_id
+                    )
+ORDER BY A.salary DESC;
+
+그룹함수 MIN을 사용하여 job_id별로 최저
+salary를 찾아냈고 그 값을 다중 열 서브쿼리를 통해 메이누커리에 전달하여 해당 직원이 누구인지 찾았다 
+
+
+
+FROM 절 서브쿼리
+FROM절에 테이블이름을 기술하여 해당 테이블의 데이터 값을 불러 왔다. FROM 절에 서브쿼리를 사용하면 select문을 테이블처럼 사용할 수있다. 
+이를 통해 SELECT문을 좀더 간결하고 효율적으로 작성할 수 있다. 
+
+
+직원들 중에서 department_name이  IT인 직원의 정보를 출력해보자. 
+
+SELECT * 
+FROM employees A,
+                (SELECT department_id
+                 FROM departments
+                 WHERE department_name='IT') B
+WHERE A.department_id = B.department_ID;
+
+
+               SELECT department_id
+                 FROM departments
+                 WHERE department_name='IT'
+
+c CREATE
+r READ
+u UPDATE
+d DROP(DELETE)
+
+데이터 삽입/갱신/삭제
+
+데이터를 직접 조작하는 방법
+SELECT 문이 주로 데이터 출력을 위해 사용되었다면 DML 은 데이터를 직접 조작하는데 사용된다. SELECT의 데이터를 보여만 주는 기능을 넘어 직접 데이터를 삽입/갱신/삭제하게 된다. 
+
+DATA MANIPULATION LANGUAGE
+데이터 조작어 
+SELECT은 단지 조회하여 출력해줄 뿐이였다. INSERT, UPDATE, DELETE은 직접데이터를 수정하게 된다. 데이터를 조작하여 저장하는 일련의 과정을 트랜젝션이라고 한다. TRANSACTION ,DML은 트랜잭션을 다루는 명령어 들이다. 
+
+INSERT 테이블에 새로운 행을 삽입
+UPDATE 테이블에 이미 있는 내용 갱신
+DELETE 테이블의 행을 삭제 
+
+
+
+INSERT 
+	새로운 데이터NEW DATA를 행단위 ROW 로 입력한다. 
+
+
+INSERT INTO departments(
+department_id,department_name,manager_id,location_id)
+VALUES (271,'Sample_Dept',200,1700);
+
+
+INSERT INTO departments
+VALUES (272,'Sample_Dept',200,1700);
+
+
+열이름과 입력되는 데이터 값이 일치하는지 확인하기 위해서 열이름을 모두 기술할것을 권장.
+
+DML 명령어를 사용할때는 테이블의 속성과 제약조건에 주의 기울여야한다. 
+
+INSERT 명령어를 실행했다고 해서 데이터베이스에 영구적으로 저장되는것은 아니다. 실행한 DML 명령어를 최종적으로 반영하려면 COMMIT 을 해야한다. 커밋하기 전까지 시행한 모든 DML은 반영되지 않는다.
+
+
+commit;
+ 
+커밋을 하지 않은 채로 데이터베이스 시스템이 비정상적으로 셧다운 되면 커밋전의 반영된 데이터는 저장되지 않는다. 
+
+
+UPDATE 
+	기존의 데이터를 다른 데이터 값으로 변경할때 사용된다. UPDATE절에 WHERE 조건절을 사용할 수 있다. 
+
+departments 테이블에 department_name이
+'Sample_Dept'인 행을 찾아서 manage_id 값을 500으로 location_id 2000으로 변경하세요
+
+UPDATE 테이블명
+SET 열이름1 = 데이터값 1 ,
+     열이름2 = 데이턱값 2
+WHERE 조건식
+
+
+
+commit;
+
+DELETE 행 삭제 WHERE절을 사용할 수 있다. 
+
+DELETE FROM departments
+WHERE department_name='sample_dept';
+
+DML 명령어들은 직접 데이터를 조작하기 때문에 사용 시 신중해야만한다. 
+DML 은 실행한 후 커밋을 해야 최종 적용된다. 롤백으로 되돌릴수 있다. 
+
+
+
+데이터의 무결성
+	데이터베이스에 저장된 데이터값과 사용자가 의도한 데이터값은 일치해야한다. 예를들면 주민등록번호 와 같은 값은 중복된 값이 있을수 없다. 중복된 주민번호값 입력 되거나 null값이 입력 된다면 데이터 식별에 큰 문제가 발생할 수도 있다. 또한 salary 열의 데이터 값에 숫자가 아닌 '오천만원' 문자가 입력된다면 큰 문제의 소지가 있다. 
+데이터베이스 관리의 기본 규칙이 지켜지지 않으면 큰 혼란이 올 수 있다. 규칙에 위배되지 않아야 한다. 이것을 위해 데이터베이스 시스테믄 데이터에 접근하거나 데이터를 처리할때마다 부적적한 데이터가 입력되는지 검사하여 데이터의 결점 없음 즉 무결성을 유지하게 된다.  DATA INTEGRITY
+
+개체 무결성 - 고유해야하며 null값을 가질 수 없다. 
+
+참조 무결성 - 참조되는 외래키가 존재하면 행은 삭제 될수 없고 기본키도 변경될수 없다. 
+
+영역 무결성 - 데이터의 형태, 범위, 유일성에 관한 제한
+
+제약 조건 (constraint) 정해 놓은 규칙에 맞는 데이터만 입력받고 규칙에 어긋나는 데이터는 거부하여 무결성을 지키는 방법 
+
+
+INSERT INTO departments
+VALUES (100,'Sample_Dept',200,1700);
+
+ORA-00001: unique constraint (HR.DEPT_ID_PK) violated
+
+첫 열에는 고유한 값 unique 한 값만 입력되도록 제약 조건이 설정되어 있어서 이미 존재하는 100을  삽입하려고 시도하여 오류가 발생됐다. 
+
+INSERT INTO departments
+VALUES ('','Sample_Dept',200,1700);
+
+ORA-01400: cannot insert NULL into ("HR"."DEPARTMENTS"."DEPA.............
+
+NULL값을 넣어도 에러가 발생한다. 
+
+INSERT 명령어 뿐만 아니라 UPDATE 이나 DELETE 명령어를 사용할때도 제약 조건의 준수 여부가 중요하다. 
+
+무결성과 제약조건은 데이터를 정상으로 유지하기 위한 장치로 DML명령어를 사용하기 전에 확인할 필요가 있다. 
+
+트랜잭션 transaction DML 즉 삽입, 갱신, 삭제와 관련된 논리적인 작업을 말한다. 데이터 무결성이 보장되는 상태에서 DML작업을 완수하기 위한 기본작업 단위이다. 
+
+은행 잔액 100만원 A계좌 
+A -> B 이체 10만원
+A계좌 10만원이 인출
+B계좌 10만원이 입금
+
+이러한 이슈에 대한 대응 논리가 트랜젝션이다. 
+
+트랜잭션의 처리가 완전히 끝나지 않았을 경우에는 전혀 이루어지지 않은 것과 같아야 한다. (all or nothing)
+
+
+트랜잭션이 성공하면 트랜잭션의 결과를 영구적으로 보장해야한다. 
+
+
+트랜잭션의 수행단계
+실행 -> 부분완료 ->완료
+
+커밋 commit 트랜잭션의 모든 미결정 데이터(부분완료)를 영구적으로 반영함으로 트랜잭션을 종료한다. (완료)
+
+롤백 rollback 트랜잭션의 모든 미결정 데이터 변경을 포기함으로 트랜젝션을 종료한다. (되돌리기)
+
+
+
+DDL Data Definition Language
+	따로 커밋하지 않아도 즉각 자동으로 반영된다. 
+
+CREATE ; 테이블 생성
+
+
+CREATE TABLE sample_product
+    (product_id number,
+     product_name varchar(30),
+     manu_date date
+     );
+
+INSERT INTO sample_product 
+
+INSERT INTO sample_product VALUES (
+1,'washer',to_date('150101','YYMMDD'));
+INSERT INTO sample_product VALUES (
+2,'cleaner',to_date('160101','YYMMDD'));
+INSERT INTO sample_product VALUES (
+3,'tv',to_date('140101','YYMMDD'));
+
+
+ALTER 테이블 수정
+	이미 생성된 테이블에 열을 추가/삭제/변경 할수 있다. 테이블의 구조를 변경할수 있다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
